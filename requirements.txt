@@ -1,0 +1,69 @@
+# FastAPI and Server
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+websockets==12.0
+
+# Data Processing
+pyarrow>=14.0.0,<19.0.0        # Cap below 19 — API changes in 19+ break pyarrow/DuckDB integration
+pandas==2.1.3
+numpy==1.26.2
+duckdb>=0.10.0,<2.0.0          # DuckDB — out-of-core engine; cap at 2.0 to avoid untested major versions
+
+# Database
+sqlalchemy==2.0.23
+
+# S3 Storage
+boto3>=1.34.0
+requests>=2.31.0                # HTTP client — used by diagnostic_tool and boto3
+
+# Utilities
+python-dotenv==1.0.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# Excel export
+openpyxl==3.1.2
+
+# Fast JSON serialization — ~10x faster than stdlib for large result sets
+orjson>=3.9.0
+
+# Iceberg table support — reads Avro manifest files
+fastavro>=1.9.0
+
+# PyIceberg — native Iceberg metadata reader (schema, snapshots, partition pruning)
+# Optional — comment out if not using Iceberg tables
+# If install fails with a wheel error: pip install pyiceberg>=0.7.0 --no-binary pyiceberg
+pyiceberg>=0.7.0
+
+# Security — credential encryption at rest
+cryptography>=42.0.0
+
+# Scheduling — APScheduler 3.x (do NOT upgrade to 4.x — different async API)
+APScheduler>=3.10.0,<4.0.0
+
+# Oracle Database connector (thin mode — no Oracle Client install needed)
+# Install only if using Oracle connections or Oracle as metadata DB
+oracledb>=2.0.0
+
+# Active Directory / LDAP authentication
+# Install only if auth.type = "ad" in config.json
+ldap3>=2.9.0
+
+# SQL Connectors (install only the ones you need — all are optional)
+# Trino / Starburst
+# trino>=0.328.0
+# Snowflake
+# snowflake-connector-python>=3.6.0
+# Databricks
+# databricks-sql-connector>=3.0.0
+
+# Enterprise observability & security
+slowapi>=0.1.9                  # Backend rate limiting (defense-in-depth behind nginx)
+python-json-logger>=2.0.0      # Structured JSON logging for ELK/Splunk/DataDog
+prometheus-client>=0.21.0      # Prometheus /metrics endpoint
+
+# Development/Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+httpx==0.25.2
